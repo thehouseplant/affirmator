@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 
+import { ThemeProvider } from "./components/theme-provider";
 import Layout from "./components/Layout";
 import "./index.css";
 
@@ -14,27 +15,29 @@ function App() {
   }
 
   return (
-    <Layout>
-      <main className="container">
-        <h1>Welcome to Tauri + React</h1>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Layout>
+        <main className="container">
+          <h1>Welcome to Tauri + React</h1>
 
-        <form
-          className="row"
-          onSubmit={(e) => {
-            e.preventDefault();
-            greet();
-          }}
-        >
-          <input
-            id="greet-input"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter a name..."
-          />
-          <button type="submit">Greet</button>
-        </form>
-        <p>{greetMsg}</p>
-      </main>
-    </Layout>
+          <form
+            className="row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              greet();
+            }}
+          >
+            <input
+              id="greet-input"
+              onChange={(e) => setName(e.currentTarget.value)}
+              placeholder="Enter a name..."
+            />
+            <button type="submit">Greet</button>
+          </form>
+          <p>{greetMsg}</p>
+        </main>
+      </Layout>
+    </ThemeProvider>
   );
 }
 
